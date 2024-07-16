@@ -1819,7 +1819,8 @@ int zmk_mouse_ps2_init_wait_for_mouse(const struct device *dev) {
             LOG_INF("Reading PS/2 device id...");
             err = ps2_read(config->ps2_device, &read_val);
             if (err) {
-                LOG_WRN("Could not read PS/2 device id: %d", err);
+                LOG_WRN("Could not read PS/2 device id: %d, SKIPPED", err);
+                return 0;
             } else {
                 if (read_val == 0) {
                     LOG_INF("Connected PS/2 device is a mouse...");
